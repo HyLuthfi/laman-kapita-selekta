@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luthfi Muthathohirin - AI & Agriculture</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --secondary: #34d399;
+  --accent: #6ee7b7;
+  --dark: #064e3b;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --bg: #f0fdf4;
+  --card: #ffffff;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Animated Background */
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%);
+  opacity: 0.6;
+}
+
+.floating-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 20s infinite ease-in-out;
+}
+
+.shape:nth-child(1) {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape:nth-child(2) {
+  width: 200px;
+  height: 200px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+.shape:nth-child(3) {
+  width: 150px;
+  height: 150px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 6s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+/* Navigation */
+nav {
+  position: sticky;
+  top: 20px;
+  z-index: 1000;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Hero Section */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.hero-content h1 {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--dark), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-content .subtitle {
+  font-size: 24px;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+
+.hero-content .npm {
+  font-size: 18px;
+  color: var(--text-light);
+  margin-bottom: 24px;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.tag {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  padding: 8px 20px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.4);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.hero-visual {
+  position: relative;
+  height: 500px;
+}
+
+.visual-card {
+  position: absolute;
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  animation: cardFloat 4s infinite ease-in-out;
+}
+
+.visual-card:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 280px;
+  animation-delay: 0s;
+}
+
+.visual-card:nth-child(2) {
+  top: 120px;
+  right: 0;
+  width: 240px;
+  animation-delay: 1s;
+}
+
+.visual-card:nth-child(3) {
+  bottom: 0;
+  left: 40px;
+  width: 260px;
+  animation-delay: 2s;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.visual-card h3 {
+  font-size: 16px;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.visual-card p {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.visual-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+/* Section */
+.section {
+  margin-bottom: 80px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-header h2 {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--dark), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-header p {
+  font-size: 18px;
+  color: var(--text-light);
+}
+
+/* Research Project Card */
+.project-card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 2px solid var(--accent);
+  margin-bottom: 48px;
+}
+
+.project-header {
+  display: flex;
+  align-items: start;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.project-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--primary), var(--dark));
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.project-title h3 {
+  font-size: 28px;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.project-subtitle {
+  color: var(--text-light);
+  font-size: 16px;
+}
+
+.project-description {
+  background: var(--bg);
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  border-left: 4px solid var(--primary);
+}
+
+.project-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.meta-item {
+  background: var(--bg);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.meta-item strong {
+  color: var(--primary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* SWOT Analysis */
+.swot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.swot-card {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.swot-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.swot-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(16, 185, 129, 0.15);
+}
+
+.swot-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.swot-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: linear-gradient(135deg, var(--accent), var(--secondary));
+}
+
+.swot-header h3 {
+  font-size: 22px;
+  color: var(--dark);
+}
+
+.swot-card ul {
+  list-style: none;
+}
+
+.swot-card li {
+  padding: 10px 0;
+  padding-left: 28px;
+  position: relative;
+  color: var(--text);
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.swot-card li:last-child {
+  border-bottom: none;
+}
+
+.swot-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* Porter Analysis */
+.porter-container {
+  display: grid;
+  gap: 20px;
+}
+
+.porter-item {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.porter-item:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
+}
+
+.porter-header {
+  padding: 24px;
+  background: linear-gradient(135deg, var(--bg), white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.porter-header:hover {
+  background: linear-gradient(135deg, var(--accent), var(--bg));
+}
+
+.porter-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.porter-number {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), var(--dark));
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.porter-title h3 {
+  font-size: 18px;
+  color: var(--dark);
+}
+
+.porter-toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+
+.porter-item.active .porter-toggle {
+  transform: rotate(180deg);
+}
+
+.porter-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.porter-content-inner {
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.porter-item.active .porter-content {
+  max-height: 500px;
+}
+
+/* Seminar Section */
+.seminar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.participant-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s;
+}
+
+.participant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+}
+
+.participant-avatar {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.participant-name {
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 14px;
+}
+
+/* Footer */
+footer {
+  background: var(--dark);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-visual {
+    display: none;
+  }
+  
+  .swot-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-links {
+    gap: 16px;
+  }
+  
+  .hero-content h1 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .hero-content h1 {
+    font-size: 32px;
+  }
+  
+  .section-header h2 {
+    font-size: 32px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-animation"></div>
+<div class="floating-shapes">
+  <div class="shape"></div>
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+
+<nav>
+  <div class="nav-container">
+    <div class="logo">🌾 Luthfi M.</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#swot">SWOT</a></li>
+      <li><a href="#porter">Porter</a></li>
+      <li><a href="#seminar">Seminar</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Luthfi Muthathohirin</h1>
+      <p class="subtitle">AI Researcher | Agriculture Technology</p>
+      <p class="npm">NPM: 2315061112</p>
+      <div class="hero-tags">
+        <span class="tag">🎓 Teknik Informatika</span>
+        <span class="tag">🤖 Artificial Intelligence</span>
+        <span class="tag">🌾 Smart Agriculture</span>
+        <span class="tag">🐍 Python & ML</span>
+      </div>
+      <div class="hero-buttons">
+        <a href="#research" class="btn btn-primary">Lihat Penelitian</a>
+        <a href="#swot" class="btn btn-secondary">Analisis</a>
+      </div>
+    </div>
+    
+    <div class="hero-visual">
+      <div class="visual-card">
+        <div class="visual-icon">🤖</div>
+        <h3>Machine Learning</h3>
+        <p>TensorFlow & Scikit-Learn</p>
+      </div>
+      <div class="visual-card">
+        <div class="visual-icon">🌾</div>
+        <h3>Digital Farming</h3>
+        <p>AI untuk Pertanian</p>
+      </div>
+      <div class="visual-card">
+        <div class="visual-icon">📊</div>
+        <h3>Data Analysis</h3>
+        <p>Python & Analytics</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Project -->
+  <section id="research" class="section">
+    <div class="section-header">
+      <h2>Rencana Penelitian Tugas Akhir</h2>
+      <p>Fokus pada AI dan Teknologi Pertanian Digital</p>
+    </div>
+    
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-icon">🌾</div>
+        <div class="project-title">
+          <h3>Penerapan Artificial Intelligence untuk Prediksi Hasil Panen Padi</h3>
+          <p class="project-subtitle">Berdasarkan Data Cuaca dan Kualitas Tanah</p>
+        </div>
+      </div>
+      
+      <div class="project-description">
+        <p><strong>Latar Belakang:</strong> Perkembangan teknologi kecerdasan buatan (AI) semakin banyak diterapkan di berbagai bidang, salah satunya adalah pertanian. Pemanfaatan AI dapat membantu meningkatkan produktivitas hasil panen melalui analisis data cuaca dan kualitas tanah.</p>
+      </div>
+      
+      <div class="project-meta">
+        <div class="meta-item">
+          <strong>🎯 Kompetensi</strong>
+          <p>Sistem Cerdas / Artificial Intelligence</p>
+        </div>
+        <div class="meta-item">
+          <strong>🛠️ Tools & Tech</strong>
+          <p>Python, TensorFlow, Scikit-Learn</p>
+        </div>
+        <div class="meta-item">
+          <strong>📚 SWEBOK</strong>
+          <p>Software Requirements, Design, Testing, Quality, Engineering Management</p>
+        </div>
+        <div class="meta-item">
+          <strong>📊 Data Source</strong>
+          <p>BMKG, FAO, Dataset Pertanian</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWOT Analysis -->
+  <section id="swot" class="section">
+    <div class="section-header">
+      <h2>Analisis SWOT</h2>
+      <p>Kesiapan Diri dalam Menghadapi Tugas Akhir</p>
+    </div>
+    
+    <div class="swot-grid">
+      <div class="swot-card">
+        <div class="swot-header">
+          <div class="swot-icon">💪</div>
+          <h3>Strengths</h3>
+        </div>
+        <ul>
+          <li>Punya dasar pemrograman Python & ML</li>
+          <li>Tertarik AI & pertanian digital</li>
+          <li>Adaptif dengan teknologi baru</li>
+        </ul>
+      </div>
+      
+      <div class="swot-card">
+        <div class="swot-header">
+          <div class="swot-icon">⚠️</div>
+          <h3>Weaknesses</h3>
+        </div>
+        <ul>
+          <li>Kurang pengalaman proyek besar</li>
+          <li>Manajemen waktu kurang</li>
+          <li>Butuh banyak referensi jurnal</li>
+        </ul>
+      </div>
+      
+      <div class="swot-card">
+        <div class="swot-header">
+          <div class="swot-icon">🚀</div>
+          <h3>Opportunities</h3>
+        </div>
+        <ul>
+          <li>Pertanian Indonesia luas → peluang besar</li>
+          <li>Dataset tersedia (BMKG, FAO, dll.)</li>
+          <li>Topik masih jarang diambil</li>
+        </ul>
+      </div>
+      
+      <div class="swot-card">
+        <div class="swot-header">
+          <div class="swot-icon">⛔</div>
+          <h3>Threats</h3>
+        </div>
+        <ul>
+          <li>Akses data sulit</li>
+          <li>Perubahan teknologi cepat</li>
+          <li>Kompetisi skripsi bidang AI tinggi</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Porter Analysis -->
+  <section id="porter" class="section">
+    <div class="section-header">
+      <h2>Porter's Five Forces</h2>
+      <p>Analisis Lingkungan Kompetitif dengan Rekan</p>
+    </div>
+    
+    <div class="porter-container">
+      <div class="porter-item">
+        <div class="porter-header">
+          <div class="porter-title">
+            <div class="porter-number">1</div>
+            <h3>Threat of New Entrants</h3>
+          </div>
+          <div class="porter-toggle">↓</div>
+        </div>
+        <div class="porter-content">
+          <div class="porter-content-inner">
+            Topik AI banyak diminati, namun pertanian digital masih jarang diangkat sebagai fokus penelitian. Ini memberikan peluang untuk membuat kontribusi yang unik.
+          </div>
+        </div>
+      </div>
+      
+      <div class="porter-item">
+        <div class="porter-header">
+          <div class="porter-title">
+            <div class="porter-number">2</div>
+            <h3>Bargaining Power of Suppliers</h3>
+          </div>
+          <div class="porter-toggle">↓</div>
+        </div>
+        <div class="porter-content">
+          <div class="porter-content-inner">
+            Data cuaca dan kualitas tanah terbatas aksesnya. Dibutuhkan kerjasama dengan instansi seperti BMKG untuk mendapatkan data yang berkualitas.
+          </div>
+        </div>
+      </div>
+      
+      <div class="porter-item">
+        <div class="porter-header">
+          <div class="porter-title">
+            <div class="porter-number">3</div>
+            <h3>Bargaining Power of Buyers</h3>
+          </div>
+          <div class="porter-toggle">↓</div>
+        </div>
+        <div class="porter-content">
+          <div class="porter-content-inner">
+            Dosen pembimbing dan industri menginginkan hasil penelitian yang aplikatif dan dapat diimplementasikan secara nyata di lapangan.
+          </div>
+        </div>
+      </div>
+      
+      <div class="porter-item">
+        <div class="porter-header">
+          <div class="porter-title">
+            <div class="porter-number">4</div>
+            <h3>Threat of Substitutes</h3>
+          </div>
+          <div class="porter-toggle">↓</div>
+        </div>
+        <div class="porter-content">
+          <div class="porter-content-inner">
+            Sistem manual pertanian yang mengandalkan pengalaman petani tradisional masih banyak digunakan dan dipercaya oleh masyarakat.
+          </div>
+        </div>
+      </div>
+      
+      <div class="porter-item">
+        <div class="porter-header">
+          <div class="porter-title">
+            <div class="porter-number">5</div>
+            <h3>Industry Rivalry</h3>
+          </div>
+          <div class="porter-toggle">↓</div>
+        </div>
+        <div class="porter-content">
+          <div class="porter-content-inner">
+            Persaingan antar mahasiswa di bidang AI cukup tinggi, dengan banyak yang mengambil topik serupa namun dengan fokus berbeda.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seminar Participants -->
+  <section id="seminar" class="section">
+    <div class="section-header">
+      <h2>Peserta Seminar</h2>
+      <p>10 Rekan Mahasiswa dalam Rencana Seminar</p>
+    </div>
+    
+    <div class="seminar-grid">
+      <div class="participant-card">
+        <div class="participant-avatar">RR</div>
+        <p class="participant-name">Reza Rohman</p>
+      </div>
+      <div class="participant-card">
+        <div class="participant-avatar">ES</div>
+        <p class="participant-name">Erlin Sari</p>
+      </div>
+      <div class="participant-card">
+        <div class="participant-avatar">TS</div>
+        <p class="participant-name">Tri Septiani</p>
+      </div>
+      <div class="participant-card">
+        <div class="participant-avatar">MM</div>
+        <p class="participant-name">Makhasin Muhammad</p>
+      </div>
+      <div class="participant-card">
+        <div class="participant-avatar">DA</div>
+        <p class="participant-name">Dyvta Avryansyah</p>
+      </div>
+      <div class="participant-card">
+        <div class="participant-avatar">AP</div>
+        <p class="participant-name">Anazky Putra Irwansyah</p>
+      </div>
+      <div class="participant-card">
+        <div class="participant-avatar">AD</div>
+        <p class="participant-name">Arlen Destico</p>
+      </div>
+            <div class="participant-card">
+        <div class="participant-avatar">AD</div>
+        <p class="participant-name">Daniel Ardiansyah</p>
+      </div>
+            <div class="participant-card">
+        <div class="participant-avatar">AD</div>
+        <p class="participant-name">Anggi Permata</p>
+      </div>
+            <div class="participant-card">
+        <div class="participant-avatar">AD</div>
+        <p class="participant-name">Risdam Ananda</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#research">Research</a>
+      <a href="#swot">SWOT</a>
+      <a href="#porter">Porter</a>
+      <a href="#seminar">Seminar</a>
+    </div>
+    <p>© 2025 Luthfi Muthathohirin • Fakultas Teknik - Universitas Lampung</p>
+    <p style="margin-top: 8px; opacity: 0.8;">NPM: 2315061112 | Program Studi Teknik Informatika</p>
+  </div>
+</footer>
+
+<script>
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Porter accordion
+const porterItems = document.querySelectorAll('.porter-item');
+porterItems.forEach(item => {
+  const header = item.querySelector('.porter-header');
+  header.addEventListener('click', () => {
+    const isActive = item.classList.contains('active');
+    
+    // Close all items
+    porterItems.forEach(i => i.classList.remove('active'));
+    
+    // Toggle current item
+    if (!isActive) {
+      item.classList.add('active');
+    }
+  });
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+// Apply animation to elements
+document.querySelectorAll('.swot-card, .porter-item, .participant-card, .project-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// Active nav link on scroll
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section[id]');
+  const scrollY = window.pageYOffset;
+
+  sections.forEach(section => {
+    const sectionHeight = section.offsetHeight;
+    const sectionTop = section.offsetTop - 100;
+    const sectionId = section.getAttribute('id');
+    
+    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.style.color = 'var(--text)';
+        if (link.getAttribute('href') === `#${sectionId}`) {
+          link.style.color = 'var(--primary)';
+        }
+      });
+    }
+  });
+});
+</script>
+
+</body>
+        
